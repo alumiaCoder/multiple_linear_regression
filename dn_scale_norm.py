@@ -1,6 +1,5 @@
 import numpy as np
 
-
 class Normalizer():
     """A scaler that performs normalization to given range.
     Deals with multiple feature/multiple parameter arrays
@@ -22,8 +21,8 @@ class Normalizer():
             n_examples = X_1.shape[0] 
             n_features = X_1.shape[1]
         else:
-            n_examples = X_1.shape[0] 
-            n_features = 1
+            n_examples = 1
+            n_features = X_1.shape[-1]
 
         #find maximum and minimum for each column, store it and perform transformation
         for i in range(n_features):
@@ -76,8 +75,8 @@ class MeanScaller():
             n_examples = X_1.shape[0] 
             n_features = X_1.shape[1]
         else:
-            n_examples = X_1.shape[0] 
-            n_features = 1
+            n_examples = 1
+            n_features = X_1.shape[-1]
 
         #find maximum and minimum for each column, store it and perform transformation
         for i in range(n_features):
@@ -131,8 +130,8 @@ class Zscore():
             n_examples = X_1.shape[0] 
             n_features = X_1.shape[1]
         else:
-            n_examples = X_1.shape[0] 
-            n_features = 1
+            n_examples = 1
+            n_features = X_1.shape[-1]
 
         #find maximum and minimum for each column, store it and perform transformation
         for i in range(n_features):
