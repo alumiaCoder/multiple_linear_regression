@@ -26,8 +26,8 @@ class Normalizer():
 
         #find maximum and minimum for each column, store it and perform transformation
         for i in range(n_features):
-            temp_max = np.max(X_1[:, i:i+1,:], axis=None)
-            temp_min = np.min(X_1[:, i:i+1,:],axis=None)
+            temp_max = np.max(X_1[:, i:i+1], axis=None)
+            temp_min = np.min(X_1[:, i:i+1],axis=None)
             parameters.append([temp_min, temp_max])
 
         self.n_examples = n_examples
@@ -42,7 +42,7 @@ class Normalizer():
         X_1 = X_1.astype(np.float32)
 
         for i in range(self.n_features):
-            X_1[:,i:i+1,:] = ((X_1[:, i:i+1,:] - self.parameters[i][0])/(self.parameters[i][1]-self.parameters[i][0]))*(self.norm_range[1]-self.norm_range[0])+self.norm_range[0] 
+            X_1[:,i:i+1] = ((X_1[:, i:i+1] - self.parameters[i][0])/(self.parameters[i][1]-self.parameters[i][0]))*(self.norm_range[1]-self.norm_range[0])+self.norm_range[0] 
         
         return X_1
 
@@ -51,7 +51,7 @@ class Normalizer():
         X_1 = X_1.astype(np.float32)
 
         for i in range(self.n_features):
-            X_1[:,i:i+1,:] = ((X_1[:, i:i+1,:] - self.norm_range[0])/(self.norm_range[1]-self.norm_range[0]))*(self.parameters[i][1]-self.parameters[i][0])+self.parameters[i][0] 
+            X_1[:,i:i+1] = ((X_1[:, i:i+1] - self.norm_range[0])/(self.norm_range[1]-self.norm_range[0]))*(self.parameters[i][1]-self.parameters[i][0])+self.parameters[i][0] 
         
         return X_1
 
