@@ -73,9 +73,9 @@ class MLRegression():
 
     def predict(self, X: np.array):
         n_examples = X.shape[0]        
-        yhat = np.array(n_examples)
+        yhat = np.zeros((n_examples))
 
         for i in range(n_examples):
-            yhat[i] = np.dot(w, X[i]) + b
+            yhat[i] = np.dot(self.w_history[-1], X[i]) + self.b_history[-1]
 
         return yhat

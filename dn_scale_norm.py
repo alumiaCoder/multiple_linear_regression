@@ -55,7 +55,7 @@ class Normalizer():
         
         return X_1
 
-class MeanScaller():
+class MeanScaler():
     """A scaler that performs mean normalization.
     Deals with multiple feature/multiple parameter arrays
     Expects a 3D array
@@ -80,9 +80,9 @@ class MeanScaller():
 
         #find maximum and minimum for each column, store it and perform transformation
         for i in range(n_features):
-            temp_max = np.max(X_1[:, i:i+1,:], axis=None)
-            temp_min = np.min(X_1[:, i:i+1,:],axis=None)
-            temp_mean = np.mean(X_1[:, i:i+1,:],axis=None)
+            temp_max = np.max(X_1[:, i:i+1], axis=None)
+            temp_min = np.min(X_1[:, i:i+1],axis=None)
+            temp_mean = np.mean(X_1[:, i:i+1],axis=None)
             parameters.append([temp_min, temp_max, temp_mean])
 
         self.n_examples = n_examples
@@ -96,7 +96,7 @@ class MeanScaller():
         X_1 = X_1.astype(np.float32)
 
         for i in range(self.n_features):
-            X_1[:,i:i+1,:] = (X_1[:, i:i+1,:] - self.parameters[i][2])/(self.parameters[i][1]-self.parameters[i][0])
+            X_1[:,i:i+1] = (X_1[:, i:i+1] - self.parameters[i][2])/(self.parameters[i][1]-self.parameters[i][0])
         
         return X_1
 
@@ -105,7 +105,7 @@ class MeanScaller():
         X_1 = X_1.astype(np.float32)
 
         for i in range(self.n_features):
-            X_1[:,i:i+1,:] = X_1[:, i:i+1,:]*(self.parameters[i][1]-self.parameters[i][0])+self.parameters[i][2] 
+            X_1[:,i:i+1] = X_1[:, i:i+1]*(self.parameters[i][1]-self.parameters[i][0])+self.parameters[i][2] 
         
         return X_1
 
@@ -135,10 +135,10 @@ class Zscore():
 
         #find maximum and minimum for each column, store it and perform transformation
         for i in range(n_features):
-            temp_max = np.max(X_1[:, i:i+1,:], axis=None)
-            temp_min = np.min(X_1[:, i:i+1,:],axis=None)
-            temp_mean = np.mean(X_1[:, i:i+1,:],axis=None)
-            temp_std = np.std(X_1[:, i:i+1,:],axis=None)
+            temp_max = np.max(X_1[:, i:i+1], axis=None)
+            temp_min = np.min(X_1[:, i:i+1],axis=None)
+            temp_mean = np.mean(X_1[:, i:i+1],axis=None)
+            temp_std = np.std(X_1[:, i:i+1],axis=None)
             parameters.append([temp_min, temp_max, temp_mean, temp_std])
 
         self.n_examples = n_examples
@@ -152,7 +152,7 @@ class Zscore():
         X_1 = X_1.astype(np.float32)
 
         for i in range(self.n_features):
-            X_1[:,i:i+1,:] = (X_1[:, i:i+1,:] - self.parameters[i][2])/(self.parameters[i][3])
+            X_1[:,i:i+1] = (X_1[:, i:i+1] - self.parameters[i][2])/(self.parameters[i][3])
         
         return X_1
 
@@ -161,7 +161,7 @@ class Zscore():
         X_1 = X_1.astype(np.float32)
 
         for i in range(self.n_features):
-            X_1[:,i:i+1,:] = X_1[:, i:i+1,:]*self.parameters[i][3]+self.parameters[i][2] 
+            X_1[:,i:i+1] = X_1[:, i:i+1]*self.parameters[i][3]+self.parameters[i][2] 
         
         return X_1
 

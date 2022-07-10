@@ -10,12 +10,13 @@ if __name__ == "__main__":
     model = dn_multiple_linear_regression.MLRegression()
 
     scaler_X = dn_scale_norm.Normalizer()
-    scaler_y = dn_scale_norm.Normalizer()
 
-    scaler_X.fit(X_train, [-1,1])
-    scaler_y.fit(X_train, [-1,1])
+    scaler_X.fit(X_train, norm_range=[-1,1])
 
     new_X = scaler_X.transform(X_train)
-    new_y = scaler_y.transform(y_train)
 
-    model.fit(new_X, new_y, 10000, 0.001)
+    model.fit(new_X, y_train, 30000, 0.001)
+
+    yhat = model.predict(new_X)
+
+    print(y_train,yhat)
